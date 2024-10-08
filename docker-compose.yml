@@ -19,7 +19,7 @@ services:
       - 9120:9120
     environment: # https://github.com/mbecker20/komodo/blob/main/config_example/core.config.example.toml
       KOMODO_HOST: https://demo.komo.do # CHANGEME
-      KOMODO_TITLE: Komodo # Change the app title, displayed in the browser tab.
+      KOMODO_TITLE: MIKRONIKA # Change the app title, displayed in the browser tab.
       KOMODO_FIRST_SERVER: http://komodo-periphery:8120 # Creates the "default" server.
       ## MONGO
       KOMODO_MONGO_ADDRESS: komodo-mongo:27017
@@ -44,6 +44,7 @@ services:
   ## or deploy it on the host directly using https://github.com/mbecker20/komodo/tree/main/scripts
   komodo-periphery:
     image: ghcr.io/mbecker20/periphery:latest # use ghcr.io/mbecker20/periphery:latest-aarch64 for arm support
+    restart: unless-stopped
     logging:
       driver: local
     networks:
