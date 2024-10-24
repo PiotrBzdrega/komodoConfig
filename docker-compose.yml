@@ -7,7 +7,7 @@
 
 services:
   komodo-core:
-    image: ghcr.io/mbecker20/komodo:e029e94f  ##:latest ## use ghcr.io/mbecker20/komodo:latest-aarch64 for arm support
+    image: ghcr.io/mbecker20/komodo:latest #e029e94f  ##:latest ## use ghcr.io/mbecker20/komodo:latest-aarch64 for arm support
     restart: unless-stopped
     depends_on:
       - komodo-mongo
@@ -18,7 +18,7 @@ services:
     ports:
       - 9120:9120
     environment: # https://github.com/mbecker20/komodo/blob/main/config_example/core.config.example.toml
-      KOMODO_HOST: https://demo.komo.do # CHANGEME
+      KOMODO_HOST: http://${DOCKER_GATEWAY_HOST} # CHANGEME
       KOMODO_TITLE: MIKRONIKA # Change the app title, displayed in the browser tab.
       KOMODO_FIRST_SERVER: http://komodo-periphery:8120 # Creates the "default" server.
       ## MONGO
@@ -43,7 +43,7 @@ services:
   ## Deploy periphery container using this block,
   ## or deploy it on the host directly using https://github.com/mbecker20/komodo/tree/main/scripts
   komodo-periphery:
-    image: ghcr.io/mbecker20/periphery:e029e94f  ##:latest # use ghcr.io/mbecker20/periphery:latest-aarch64 for arm support
+    image: ghcr.io/mbecker20/periphery:latest #e029e94f  ##:latest # use ghcr.io/mbecker20/periphery:latest-aarch64 for arm support
     restart: unless-stopped
     logging:
       driver: local
